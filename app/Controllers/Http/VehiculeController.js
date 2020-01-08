@@ -1,92 +1,47 @@
 'use strict'
+const Vehicule = use('App/Models/Vehicule')
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
-
-/**
- * Resourceful controller for interacting with vehicules
- */
 class VehiculeController {
-  /**
-   * Show a list of all vehicules.
-   * GET vehicules
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index({ request, response, view }) {
+    const vehicules = await Vehicule.all()
+
+    return vehicules
   }
 
-  /**
-   * Render a form to be used for creating a new vehicule.
-   * GET vehicules/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, response }) {
+    const data = request.all()
+    const vehicule = await Vehicule.create(data)
+
+    return vehicule
   }
 
-  /**
-   * Create/save a new vehicule.
-   * POST vehicules
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
+  async show({ params, request, response, view }) {
+    const vehicule = await Vehicule.findOrFail(params.id)
+
+    await vehicule.load('carts')
+
+    return vehicule
   }
 
-  /**
-   * Display a single vehicule.
-   * GET vehicules/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
+  async update({ params, request, response }) {
+    const { license, truck_type, max_volume, attachment, second_attachment } = request.all()
+    const vehicule = await Vehicule.findOrFail(params.id)
+
+    !license ? null : vehicule.license = license
+    !truck_type ? null : vehicule.truck_type = truck_type
+    !max_volume ? null : vehicule.max_volume = max_volume
+    !attachment ? null : vehicule.attachment = attachment
+    !second_attachment ? null : vehicule.second_attachment = second_attachment
+
+    vehicule.save()
+
+    return vehicule
   }
 
-  /**
-   * Render a form to update an existing vehicule.
-   * GET vehicules/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
+  async destroy({ params, request, response }) {
+    const vehicule = await Vehicule.findOrFail(params.id)
 
-  /**
-   * Update vehicule details.
-   * PUT or PATCH vehicules/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a vehicule with id.
-   * DELETE vehicules/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+    vehicule.delete()
   }
 }
 

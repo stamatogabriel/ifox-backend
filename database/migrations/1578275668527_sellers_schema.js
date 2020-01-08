@@ -10,7 +10,7 @@ class SellersSchema extends Schema {
       table.string('name', 50).notNullable()
       table.string('cpf', 14).notNullable()
       table.string('phone', 14).notNullable()
-      table.string('cellphone', 14).notNullable()
+      table.string('cellphone', 14)
       table.timestamps()
     })
   }

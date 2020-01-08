@@ -8,10 +8,10 @@ class VehiculesSchema extends Schema {
     this.create('vehicules', (table) => {
       table.increments()
       table.string('license', 8).notNullable().unique()
-      table.string('truck_type', 15).notNullable().unique()
-      table.string('max_volume', 7).notNullable()
-      table.string('attachment', 8).references('license')
-      table.string('second_attachment', 8).references('license')
+      table.string('truck_type', 15).notNullable()
+      table.string('max_volume', 7)
+      table.string('attachment', 8).references('license').inTable('carts')
+      table.string('second_attachment', 8).references('license').inTable('carts')
       table.timestamps()
     })
   }

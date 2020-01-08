@@ -13,17 +13,29 @@ Route.group(() => {
 }).middleware("auth");
 
 Route.group(() => {
-  Route.resource('drivers', "DriverController")
+  Route.resource('drivers', "DriverController").apiOnly()
 })
 
 Route.group(() => {
-  Route.resource('enterprises', 'EnterpriseController')
+  Route.resource('enterprises', 'EnterpriseController').apiOnly()
 })
 
 Route.group(() => {
-  Route.resource('products', 'ProductController')
+  Route.resource('products', 'ProductController').apiOnly()
 })
 
 Route.group(() => {
-  Route.resource('sellers', 'SellerController')
+  Route.resource('sellers', 'SellerController').apiOnly()
+})
+
+Route.group(() => {
+  Route.resource('storages', 'StorageController').apiOnly()
+})
+
+Route.group(() => {
+  Route.resource('carts', 'CartController').apiOnly()
+})
+
+Route.group(() => {
+  Route.resource('vehicules', 'VehiculeController').apiOnly()
 })
