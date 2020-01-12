@@ -12,7 +12,7 @@ class DriverSchema extends Schema {
       table.string('rg', 14).notNullable().unique()
       table.string('cnh', 14).notNullable().unique()
       table.string('cnh_category', 2).notNullable()
-      table.string('phone', 14).notNullable()
+      table.string('phone', 15).notNullable()
       table.timestamps()
     })
   }

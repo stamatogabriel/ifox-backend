@@ -9,8 +9,8 @@ class SellersSchema extends Schema {
       table.increments()
       table.string('name', 50).notNullable()
       table.string('cpf', 14).notNullable()
-      table.string('phone', 14).notNullable()
-      table.string('cellphone', 14)
+      table.string('phone', 15).notNullable()
+      table.string('cellphone', 15)
       table.timestamps()
     })
   }

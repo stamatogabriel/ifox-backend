@@ -14,7 +14,7 @@ class AuthController {
         });
       }*/
 
-    const data = request.only(["username", "password", "manager"]);
+    const data = request.only(["username", "password", "email"]);
 
     const user = await User.create(data);
 

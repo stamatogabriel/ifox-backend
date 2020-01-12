@@ -10,8 +10,6 @@ class VehiculesSchema extends Schema {
       table.string('license', 8).notNullable().unique()
       table.string('truck_type', 15).notNullable()
       table.string('max_volume', 7)
-      table.string('attachment', 8).references('license').inTable('carts')
-      table.string('second_attachment', 8).references('license').inTable('carts')
       table.timestamps()
     })
   }

@@ -15,7 +15,7 @@ class StorageSchema extends Schema {
       table.string('uf', 2)
       table.string('zipcode', 10)
       table.string('contact', 50)
-      table.string('phone', 14)
+      table.string('phone', 15)
       table.timestamps()
     })
   }
