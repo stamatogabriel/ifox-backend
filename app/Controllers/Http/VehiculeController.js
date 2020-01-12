@@ -18,20 +18,16 @@ class VehiculeController {
   async show({ params, request, response, view }) {
     const vehicule = await Vehicule.findOrFail(params.id)
 
-    await vehicule.load('carts')
-
     return vehicule
   }
 
   async update({ params, request, response }) {
-    const { license, truck_type, max_volume, attachment, second_attachment } = request.all()
+    const { license, truck_type, max_volume } = request.all()
     const vehicule = await Vehicule.findOrFail(params.id)
 
     !license ? null : vehicule.license = license
     !truck_type ? null : vehicule.truck_type = truck_type
     !max_volume ? null : vehicule.max_volume = max_volume
-    !attachment ? null : vehicule.attachment = attachment
-    !second_attachment ? null : vehicule.second_attachment = second_attachment
 
     vehicule.save()
 
