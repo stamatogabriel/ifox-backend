@@ -23,18 +23,24 @@ class SellerController {
   }
 
   async update({ params, request, response }) {
-    const {
-      name,
-      cpf,
-      phone,
-      cellphone,
-    } = request.all()
     const seller = await Seller.findOrFail(params.id)
 
-    !name ? null : seller.name = name
+    const data = request.only([
+      'name',
+      'cpf',
+      'phone',
+      'cellphone',
+
+    ])
+
+    seller.merge(data)
+
+    /*!name ? null : seller.name = name
     !cpf ? null : seller.cpf = cpf
     !phone ? null : seller.phone = phone
-    !cellphone ? null : seller.cellphone = cellphone
+    !cellphone ? null : seller.cellphone = cellphone*/
+
+
 
     seller.save()
 
