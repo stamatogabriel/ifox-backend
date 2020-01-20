@@ -20,6 +20,7 @@ class EnterprisesSchema extends Schema {
       table.string('phone', 15).notNullable()
       table.string('cellphone', 15).notNullable()
       table.string('type', 15).notNullable()
+      table.string('notes')
       table.timestamps()
     })
   }
