@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Driver extends Model {
+  orders() {
+    return this.hasMany('App/Models/Order')
+  }
 }
 
 module.exports = Driver
