@@ -11,6 +11,9 @@ class SellersSchema extends Schema {
       table.string('cpf', 14).notNullable()
       table.string('phone', 15).notNullable()
       table.string('cellphone', 15)
+      table.string('bank')
+      table.string('agency')
+      table.string('cc')
       table.timestamps()
     })
   }
