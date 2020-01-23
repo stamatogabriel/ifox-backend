@@ -16,10 +16,17 @@ class ContractController {
       'distributor_id',
       'volume',
       'unitary_price',
-      'to_pay'
+      'notes',
     ])
 
-    const contract = await Contract.create(data)
+    const contract = await Contract.create({
+      ...data,
+      to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
+      to_load: volume,
+      paied: 0,
+      total: parseFloat(data.volume) * parseFloat(data.unitary_price),
+    })
+
 
     return contract
   }
