@@ -4,7 +4,11 @@ const Contract = use('App/Models/Contract')
 class ContractController {
 
   async index({ request, response, view }) {
-    const contracts = await Contract.all()
+    const contracts = await Contract
+      .query()
+      .with('storages')
+      .with('enterprises')
+      .fetch()
 
     return contracts
   }
