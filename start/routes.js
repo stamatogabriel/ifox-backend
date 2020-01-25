@@ -19,5 +19,5 @@ Route.group(() => {
   Route.resource('storages', 'StorageController').apiOnly()
   Route.resource('vehicules', 'VehiculeController').apiOnly()
   Route.resource('contracts', 'ContractController').apiOnly()
-  Route.resource('partners', 'PartnersContractController').apiOnly()
+  Route.resource('partners-contract', 'PartnersContractController').apiOnly()
 }).middleware("auth");
