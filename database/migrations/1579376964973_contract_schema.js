@@ -7,10 +7,10 @@ class ContractSchema extends Schema {
   up() {
     this.create('contracts', (table) => {
       table.increments()
-      table.integer('storage_id').references('id').inTable('storages').notNullable().unsigned()
+      table.integer('storage_id').references('id').inTable('storages').notNullable().unsigned().onUpdate('CASCADE')
       table.string('contract_number').notNullable()
-      table.integer('enterprise_id').references('id').inTable('enterprises').notNullable().unsigned()
-      table.integer('product_id').references('id').inTable('products').notNullable().unsigned()
+      table.integer('enterprise_id').references('id').inTable('enterprises').notNullable().unsigned().onUpdate('CASCADE')
+      table.integer('product_id').references('id').inTable('products').notNullable().unsigned().onUpdate('CASCADE')
       table.float('volume').notNullable()
       table.float('unitary_price').notNullable()
       table.float('to_pay')

@@ -7,8 +7,20 @@ class PartnersContractSchema extends Schema {
   up() {
     this.create('partners_contracts', (table) => {
       table.increments()
-      table.integer('contract_id').references('id').inTable('contracts').unsigned()
-      table.integer('partner_id').references('id').inTable('enterprises').unsigned()
+      table
+        .integer('contract_id')
+        .references('id')
+        .inTable('contracts')
+        .unsigned().
+        onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      table
+        .integer('partner_id')
+        .references('id')
+        .inTable('enterprises')
+        .unsigned()
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       table.timestamps()
     })
   }
