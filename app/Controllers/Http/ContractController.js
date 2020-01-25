@@ -13,7 +13,8 @@ class ContractController {
     const data = request.only([
       'storage_id',
       'contract_number',
-      'distributor_id',
+      'enterprise_id',
+      'product_id',
       'volume',
       'unitary_price',
       'notes',
@@ -22,17 +23,19 @@ class ContractController {
     const contract = await Contract.create({
       ...data,
       to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
-      to_load: volume,
+      to_load: data.volume,
       paied: 0,
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
     })
-
 
     return contract
   }
 
   async show({ params, request, response, view }) {
     const contract = await Contract.findOrFail(params.id)
+
+    await contract
+      .loadMany(['storages', 'enterprises', 'products'])
 
     return contract
   }
@@ -43,7 +46,7 @@ class ContractController {
     const data = request.only([
       'storage_id',
       'contract_number',
-      'distributor_id',
+      'enterprise_id',
       'volume',
       'unitary_price',
       'to_pay'

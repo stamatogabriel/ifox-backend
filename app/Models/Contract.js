@@ -8,6 +8,14 @@ class Contract extends Model {
     return this.belongsTo('App/Models/Storage')
   }
 
+  products() {
+    return this.belongsTo('App/Models/Product')
+  }
+
+  enterprises() {
+    return this.belongsTo('App/Models/Enterprise')
+  }
+
   partners_contracts() {
     return this.hasMany('App/Models/PartnersContract')
   }
