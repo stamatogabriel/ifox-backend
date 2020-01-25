@@ -17,11 +17,12 @@ class PartnersContractController {
     return partner
   }
 
-  async show({ params, request, response, view }) {
+  /*async show({ params, request, response, view }) {
+
     const partner = await PartnersContract.findOrFail(params.id)
 
     const partner
-  }
+  }*/
 
   async update({ params, request, response }) {
     const data = request.only(['contract_id', 'partner_id'])
