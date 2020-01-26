@@ -4,7 +4,10 @@ const PartnersContract = use('App/Models/PartnersContract')
 class PartnersContractController {
 
   async index({ request, response, view }) {
-    const partners = await PartnersContract.all()
+    const partners = await PartnersContract
+      .query()
+      .with('enterprises')
+      .fetch()
 
     return partners
   }
