@@ -21,8 +21,10 @@ class ContractSchema extends Schema {
       table.float('storage_cust')
       table.float('freight')
       table.float('total_cust')
+      table.boolean('owner')
       table.float('total').notNullable()
       table.string('notes')
+      table.boolean('open')
       table.timestamps()
     })
   }
