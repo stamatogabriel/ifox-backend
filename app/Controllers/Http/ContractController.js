@@ -21,6 +21,10 @@ class ContractController {
       'product_id',
       'volume',
       'unitary_price',
+      'spread',
+      'brokerage',
+      'storage_cust',
+      'freight',
       'notes',
     ])
 
@@ -29,6 +33,7 @@ class ContractController {
       to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
       to_load: data.volume,
       paied: 0,
+      total_cust: data.unitary_price + spread + brokerage + storage_cust,
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
     })
 
