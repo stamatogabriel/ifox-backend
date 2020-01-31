@@ -35,7 +35,7 @@ class ContractController {
       to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
       to_load: data.volume,
       paied: 0,
-      total_cust: data.unitary_price + spread + brokerage + storage_cust,
+      total_cust:  parseFloat(data.unitary_price) +  parseFloat(data.spread) +  parseFloat(data.brokerage) +  parseFloat(data.storage_cust),
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
       open: true
     })
