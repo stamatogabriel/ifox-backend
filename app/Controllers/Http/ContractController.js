@@ -26,7 +26,9 @@ class ContractController {
       'storage_cust',
       'freight',
       'notes',
+      'owner'
     ])
+
 
     const contract = await Contract.create({
       ...data,
@@ -35,6 +37,7 @@ class ContractController {
       paied: 0,
       total_cust: data.unitary_price + spread + brokerage + storage_cust,
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
+      open: true
     })
 
     return contract
@@ -56,9 +59,15 @@ class ContractController {
       'storage_id',
       'contract_number',
       'enterprise_id',
+      'product_id',
       'volume',
       'unitary_price',
-      'to_pay'
+      'spread',
+      'brokerage',
+      'storage_cust',
+      'freight',
+      'notes',
+      'owner'
     ])
 
     contract.merge(data)
