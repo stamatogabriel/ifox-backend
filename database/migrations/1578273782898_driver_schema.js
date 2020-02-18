@@ -8,7 +8,7 @@ class DriverSchema extends Schema {
     this.create('drivers', (table) => {
       table.increments()
       table.string('name', 50).notNullable()
-      table.string('cpf', 14).unique()
+      table.string('cpf', 14).unique(),notNullable()
       table.string('rg', 20).unique()
       table.string('cnh', 20).unique()
       table.string('cnh_category', 2)

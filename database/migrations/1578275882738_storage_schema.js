@@ -17,6 +17,7 @@ class StorageSchema extends Schema {
       table.string('contact', 50)
       table.string('phone', 15)
       table.string('scheduling_time')
+      table.string('notes')
       table.string('type').notNullable()
       table.timestamps()
     })

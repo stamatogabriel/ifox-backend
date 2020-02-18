@@ -33,6 +33,7 @@ class EnterpriseController {
       neighborhood,
       city,
       uf,
+      complement,
       zipcode,
       contact,
       phone,

@@ -13,6 +13,7 @@ class EnterprisesSchema extends Schema {
       table.string('street', 50).notNullable()
       table.integer('number').notNullable()
       table.string('neighborhood', 50).notNullable()
+      table.string('complement', 50)
       table.string('city', 40).notNullable()
       table.string('uf', 2).notNullable()
       table.string('zipcode', 10).notNullable()

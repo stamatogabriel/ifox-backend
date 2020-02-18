@@ -30,7 +30,6 @@ class SellerController {
       'cpf',
       'phone',
       'cellphone',
-
     ])
 
     seller.merge(data)
