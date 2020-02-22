@@ -29,18 +29,18 @@ class ContractSchema extends Schema {
         .notNullable()
         .unsigned()
         .onUpdate("CASCADE");
-      table.bigint("volume").notNullable();
-      table.real("unitary_price").notNullable();
-      table.real("to_pay");
-      table.bigint("to_load");
-      table.real("paied");
-      table.real("spread");
-      table.real("brokerage");
-      table.real("storage_cust");
-      table.real("freight");
-      table.real("total_cust");
+      table.integer("volume").notNullable();
+      table.float("unitary_price").notNullable();
+      table.float("to_pay");
+      table.integer("to_load");
+      table.float("paied");
+      table.float("spread");
+      table.float("brokerage");
+      table.float("storage_cust");
+      table.float("freight");
+      table.float("total_cust");
       table.boolean("owner");
-      table.bigint("total").notNullable();
+      table.integer("total").notNullable();
       table.string("notes");
       table.boolean("open");
       table.timestamps();
