@@ -8,7 +8,6 @@ class ContractController {
       .query()
       .with('storages')
       .with('enterprises')
-      .with('sells')
       .fetch()
 
     return contracts
