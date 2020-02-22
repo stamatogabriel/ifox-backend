@@ -19,6 +19,10 @@ class Contract extends Model {
   partners_contracts() {
     return this.hasMany('App/Models/PartnersContract')
   }
+
+  sells() {
+    return this.hasMany('App/Models/Sells')
+  }
 }
 
 module.exports = Contract

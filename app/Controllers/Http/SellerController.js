@@ -34,13 +34,6 @@ class SellerController {
 
     seller.merge(data)
 
-    /*!name ? null : seller.name = name
-    !cpf ? null : seller.cpf = cpf
-    !phone ? null : seller.phone = phone
-    !cellphone ? null : seller.cellphone = cellphone*/
-
-
-
     seller.save()
 
     return seller
