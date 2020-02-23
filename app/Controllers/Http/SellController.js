@@ -18,8 +18,6 @@ class SellController {
       .where("id", data.contract_id)
       .update("to_load", contract.to_load - data.volume);
 
-    delete data.volume;
-
     const sell = await Sell.create({
       ...data,
       profit: data.sell_price - contract.total_cust
@@ -48,6 +46,12 @@ class SellController {
 
   async destroy({ params, request, response }) {
     const sell = await Sell.findOrFail(params.id);
+
+    const contract = await Contract.findOrFail(sell.contract_id);
+
+    await Database.table("contracts")
+      .where("id", sell.contract_id)
+      .update("to_load", contract.to_load + sell.volume);
 
     sell.delete();
   }
