@@ -51,9 +51,9 @@ class SellController {
 
     await Database.table("contracts")
       .where("id", sell.contract_id)
-      .update("to_load", contract.to_load + sell.volume);
+      .update("to_load", parseInt(contract.to_load) + parseInt(sell.volume));
 
-    console.log(contract.to_load + sell.volume)
+    console.log(parseInt(contract.to_load) + parseInt(sell.volume))
 
     sell.delete();
   }
