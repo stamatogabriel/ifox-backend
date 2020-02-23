@@ -13,7 +13,7 @@ class Enterprise extends Model {
   }
 
   sells() {
-    return this.belongsToMany('App/Models/Sells')
+    return this.hasMany('App/Models/Sells')
   }
 }
 
