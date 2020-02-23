@@ -21,7 +21,7 @@ class Contract extends Model {
   }
 
   sells() {
-    return this.hasMany('App/Models/Sells')
+    return this.belongsToMany('App/Models/Sells')
   }
 }
 

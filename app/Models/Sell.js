@@ -5,15 +5,15 @@ const Model = use('Model')
 
 class Sell extends Model {
   sellers() {
-    return this.belongsTo('App/Models/Sellers')
+    return this.hasOne('App/Models/Sellers')
   }
 
   contracts() {
-    return this.belongsTo('App/Models/Contracts')
+    return this.hasOne('App/Models/Contracts')
   }
 
   enterprises() {
-    return this.belongsTo('App/Models/Enterprise')
+    return this.hasOne('App/Models/Enterprise')
   }
 }
 
