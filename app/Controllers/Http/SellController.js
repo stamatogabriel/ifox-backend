@@ -53,6 +53,8 @@ class SellController {
       .where("id", sell.contract_id)
       .update("to_load", contract.to_load + sell.volume);
 
+    console.log(contract.to_load + sell.volume)
+
     sell.delete();
   }
 }
