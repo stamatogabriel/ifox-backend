@@ -8,9 +8,9 @@ Route.put('passwords', 'ForgotPasswordController.update')
 
 Route.group(() => {
   Route.get('users', 'UserController.index')
-  Route.get('users', 'UserController.show')
-  Route.put('users', 'UserController.update')
-  Route.delete('users', 'UserController.destroy')
+  Route.get('users/:id', 'UserController.show')
+  Route.put('users/:id', 'UserController.update')
+  Route.delete('users/:id', 'UserController.destroy')
 
   Route.resource('drivers', 'DriverController').apiOnly()
   Route.resource('enterprises', 'EnterpriseController').apiOnly()
