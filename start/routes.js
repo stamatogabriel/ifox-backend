@@ -7,6 +7,11 @@ Route.post('passwords', 'ForgotPasswordController.store')
 Route.put('passwords', 'ForgotPasswordController.update')
 
 Route.group(() => {
+  Route.post('users', 'UserController.index')
+  Route.post('users', 'UserController.show')
+  Route.post('users', 'UserController.update')
+  Route.post('users', 'UserController.destroy')
+
   Route.resource('drivers', 'DriverController').apiOnly()
   Route.resource('enterprises', 'EnterpriseController').apiOnly()
   Route.resource('products', 'ProductController').apiOnly()
