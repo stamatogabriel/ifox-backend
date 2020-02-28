@@ -4,15 +4,15 @@
 const Schema = use('Schema')
 
 class PartnersContractSchema extends Schema {
-  up() {
+  up () {
     this.create('partners_contracts', (table) => {
       table.increments()
       table
         .integer('contract_id')
         .references('id')
         .inTable('contracts')
-        .unsigned().
-        onUpdate('CASCADE')
+        .unsigned()
+        .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
         .integer('partner_id')
@@ -25,7 +25,7 @@ class PartnersContractSchema extends Schema {
     })
   }
 
-  down() {
+  down () {
     this.drop('partners_contracts')
   }
 }

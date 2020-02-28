@@ -4,15 +4,15 @@
 const Model = use('Model')
 
 class Enterprise extends Model {
-  contract() {
+  contract () {
     return this.hasMany('App/Models/Contract')
   }
 
-  partners_contracts() {
+  partners_contracts () {
     return this.hasMany('App/Models/PartnersContract')
   }
 
-  sells() {
+  sells () {
     return this.hasMany('App/Models/Sells')
   }
 }

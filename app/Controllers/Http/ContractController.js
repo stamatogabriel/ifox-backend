@@ -2,8 +2,7 @@
 const Contract = use('App/Models/Contract')
 
 class ContractController {
-
-  async index({ request, response, view }) {
+  async index ({ request, response, view }) {
     const contracts = await Contract
       .query()
       .with('storages')
@@ -14,7 +13,7 @@ class ContractController {
     return contracts
   }
 
-  async store({ request, response }) {
+  async store ({ request, response }) {
     const data = request.only([
       'storage_id',
       'contract_number',
@@ -30,13 +29,12 @@ class ContractController {
       'owner'
     ])
 
-
     const contract = await Contract.create({
       ...data,
       to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
       to_load: data.volume,
       paied: 0,
-      total_cust:  parseFloat(data.unitary_price) +  parseFloat(data.spread) +  parseFloat(data.brokerage) +  parseFloat(data.storage_cust),
+      total_cust: parseFloat(data.unitary_price) + parseFloat(data.spread) + parseFloat(data.brokerage) + parseFloat(data.storage_cust),
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
       open: true
     })
@@ -44,7 +42,7 @@ class ContractController {
     return contract
   }
 
-  async show({ params, request, response, view }) {
+  async show ({ params, request, response, view }) {
     const contract = await Contract.findOrFail(params.id)
 
     await contract
@@ -53,7 +51,7 @@ class ContractController {
     return contract
   }
 
-  async update({ params, request, response }) {
+  async update ({ params, request, response }) {
     const contract = await Contract.findOrFail(params.id)
 
     const data = request.only([
@@ -78,7 +76,7 @@ class ContractController {
     return contract
   }
 
-  async destroy({ params, request, response }) {
+  async destroy ({ params, request, response }) {
     const contract = await Contract.findOrFail(params.id)
 
     contract.delete()

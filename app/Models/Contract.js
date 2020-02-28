@@ -4,23 +4,23 @@
 const Model = use('Model')
 
 class Contract extends Model {
-  storages() {
+  storages () {
     return this.belongsTo('App/Models/Storage')
   }
 
-  products() {
+  products () {
     return this.belongsTo('App/Models/Product')
   }
 
-  enterprises() {
+  enterprises () {
     return this.belongsTo('App/Models/Enterprise')
   }
 
-  partners_contracts() {
+  partners_contracts () {
     return this.hasMany('App/Models/PartnersContract')
   }
 
-  sells() {
+  sells () {
     return this.hasMany('App/Models/Sell')
   }
 }

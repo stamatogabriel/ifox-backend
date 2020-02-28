@@ -1,62 +1,62 @@
-"use strict";
-const Sell = use("App/Models/Sell");
-const Contract = use("App/Models/Contract");
-const Database = use("Database");
+'use strict'
+const Sell = use('App/Models/Sell')
+const Contract = use('App/Models/Contract')
+const Database = use('Database')
 
 class SellController {
-  async index({ request, response, view }) {
-    const sells = await Sell.all();
+  async index ({ request, response, view }) {
+    const sells = await Sell.all()
 
-    return sells;
+    return sells
   }
 
-  async store({ request, response }) {
-    const data = request.all();
-    const contract = await Contract.findOrFail(data.contract_id);
+  async store ({ request, response }) {
+    const data = request.all()
+    const contract = await Contract.findOrFail(data.contract_id)
 
-    await Database.table("contracts")
-      .where("id", data.contract_id)
-      .update("to_load", contract.to_load - data.volume);
+    await Database.table('contracts')
+      .where('id', data.contract_id)
+      .update('to_load', contract.to_load - data.volume)
 
     const sell = await Sell.create({
       ...data,
       profit: data.sell_price - contract.total_cust
-    });
+    })
 
-    return sell;
+    return sell
   }
 
-  async show({ params, request, response, view }) {
-    const sell = await Sell.findOrFail(params.id);
+  async show ({ params, request, response, view }) {
+    const sell = await Sell.findOrFail(params.id)
 
-    return sell;
+    return sell
   }
 
-  async update({ params, request, response }) {
-    const data = request.only(["sell_price"]);
+  async update ({ params, request, response }) {
+    const data = request.only(['sell_price'])
 
-    const sell = await Sell.findOrFail(params.id);
+    const sell = await Sell.findOrFail(params.id)
 
-    sell.merge(data);
+    sell.merge(data)
 
-    sell.save();
+    sell.save()
 
-    return sell;
+    return sell
   }
 
-  async destroy({ params, request, response }) {
-    const sell = await Sell.findOrFail(params.id);
+  async destroy ({ params, request, response }) {
+    const sell = await Sell.findOrFail(params.id)
 
-    const contract = await Contract.findOrFail(sell.contract_id);
+    const contract = await Contract.findOrFail(sell.contract_id)
 
-    await Database.table("contracts")
-      .where("id", sell.contract_id)
-      .update("to_load", parseInt(contract.to_load) + parseInt(sell.volume));
+    await Database.table('contracts')
+      .where('id', sell.contract_id)
+      .update('to_load', parseInt(contract.to_load) + parseInt(sell.volume))
 
     console.log(parseInt(contract.to_load) + parseInt(sell.volume))
 
-    sell.delete();
+    sell.delete()
   }
 }
 
-module.exports = SellController;
+module.exports = SellController

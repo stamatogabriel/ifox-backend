@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Storage extends Model {
-  contracts() {
+  contracts () {
     return this.hasMany('App/Models/Contract')
   }
 }

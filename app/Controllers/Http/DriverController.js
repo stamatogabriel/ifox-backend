@@ -2,14 +2,13 @@
 const Driver = use('App/Models/Driver')
 
 class DriverController {
-
-  async index({ request, response, view }) {
+  async index () {
     const drivers = await Driver.all()
 
     return drivers
   }
 
-  async store({ request, response }) {
+  async store ({ request }) {
     const data = request.all()
 
     const driver = await Driver.create(data)
@@ -17,32 +16,25 @@ class DriverController {
     return driver
   }
 
-
-  async show({ params, request, response, view }) {
+  async show ({ params }) {
     const driver = await Driver.findOrFail(params.id)
 
     return driver
   }
 
-  async update({ params, request, response }) {
-    const { name, cpf, rg, cnh, cnh_category, phone } = request.all()
+  async update ({ params, request }) {
+    const data = request.only(['name', 'cpf', 'rg', 'cnh', 'cnh_category', 'phone'])
 
     const driver = await Driver.findOrFail(params.id)
 
-    !name ? null : driver.name = name
-    !cpf ? null : driver.cpf = cpf
-    !rg ? null : driver.rg = rg
-    !cnh ? null : driver.cnh = cnh
-    !cnh_category ? null : driver.cnh_category = cnh_category
-    !phone ? null : driver.phone = phone
+    driver.merge(data)
 
     driver.save()
 
     return driver
-
   }
 
-  async destroy({ params, request, response }) {
+  async destroy ({ params }) {
     const driver = await Driver.findOrFail(params.id)
 
     driver.delete()

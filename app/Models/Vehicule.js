@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Vehicule extends Model {
-  orders() {
+  orders () {
     return this.hasMany('App/Models/Order')
   }
 }

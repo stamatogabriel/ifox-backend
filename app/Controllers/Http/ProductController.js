@@ -1,14 +1,13 @@
 'use strict'
 const Product = use('App/Models/Product')
 class ProductController {
-
-  async index({ request, response, view }) {
+  async index ({ request, response, view }) {
     const products = Product.all()
 
     return products
   }
 
-  async store({ request, response }) {
+  async store ({ request, response }) {
     const data = request.all()
 
     const product = await Product.create(data)
@@ -16,23 +15,23 @@ class ProductController {
     return product
   }
 
-  async show({ params, request, response, view }) {
+  async show ({ params, request, response, view }) {
     const product = await Product.findOrFail(params.id)
 
     return product
   }
 
-  async update({ params, request, response }) {
-    const { description } = request.all()
+  async update ({ params, request, response }) {
+    const data = request.only(['description'])
 
     const product = await Product.findOrFail(params.id)
 
-    product.description = description
+    product.merge(data)
 
     return product
   }
 
-  async destroy({ params, request, response }) {
+  async destroy ({ params, request, response }) {
     const product = await Product.findOrFail(params.id)
 
     product.delete()

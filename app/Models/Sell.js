@@ -4,15 +4,15 @@
 const Model = use('Model')
 
 class Sell extends Model {
-  sellers() {
+  sellers () {
     return this.belongsTo('App/Models/Sellers')
   }
 
-  contracts() {
+  contracts () {
     return this.belongsTo('App/Models/Contracts')
   }
 
-  enterprises() {
+  enterprises () {
     return this.belongsTo('App/Models/Enterprise')
   }
 }

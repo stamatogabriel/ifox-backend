@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Seller extends Model {
-  sells() {
+  sells () {
     return this.belongsToMany('App/Models/Sells')
   }
 }

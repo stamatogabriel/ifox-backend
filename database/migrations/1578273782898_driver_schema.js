@@ -4,7 +4,7 @@
 const Schema = use('Schema')
 
 class DriverSchema extends Schema {
-  up() {
+  up () {
     this.create('drivers', (table) => {
       table.increments()
       table.string('name', 50).notNullable()
@@ -17,7 +17,7 @@ class DriverSchema extends Schema {
     })
   }
 
-  down() {
+  down () {
     this.drop('drivers')
   }
 }

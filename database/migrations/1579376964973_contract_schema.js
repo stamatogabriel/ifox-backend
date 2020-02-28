@@ -1,55 +1,55 @@
-"use strict";
+'use strict'
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
-const Schema = use("Schema");
+const Schema = use('Schema')
 
 class ContractSchema extends Schema {
-  up() {
-    this.create("contracts", table => {
-      table.increments();
+  up () {
+    this.create('contracts', table => {
+      table.increments()
       table
-        .integer("storage_id")
-        .references("id")
-        .inTable("storages")
+        .integer('storage_id')
+        .references('id')
+        .inTable('storages')
         .notNullable()
         .unsigned()
-        .onUpdate("CASCADE");
-      table.string("contract_number").notNullable();
+        .onUpdate('CASCADE')
+      table.string('contract_number').notNullable()
       table
-        .integer("enterprise_id")
-        .references("id")
-        .inTable("enterprises")
+        .integer('enterprise_id')
+        .references('id')
+        .inTable('enterprises')
         .notNullable()
         .unsigned()
-        .onUpdate("CASCADE");
+        .onUpdate('CASCADE')
       table
-        .integer("product_id")
-        .references("id")
-        .inTable("products")
+        .integer('product_id')
+        .references('id')
+        .inTable('products')
         .notNullable()
         .unsigned()
-        .onUpdate("CASCADE");
-      table.integer("volume").notNullable();
-      table.float("unitary_price").notNullable();
-      table.float("to_pay");
-      table.integer("to_load");
-      table.float("paied");
-      table.float("spread");
-      table.float("brokerage");
-      table.float("storage_cust");
-      table.float("freight");
-      table.float("total_cust");
-      table.boolean("owner");
-      table.integer("total").notNullable();
-      table.string("notes");
-      table.boolean("open");
-      table.timestamps();
-    });
+        .onUpdate('CASCADE')
+      table.integer('volume').notNullable()
+      table.float('unitary_price').notNullable()
+      table.float('to_pay')
+      table.integer('to_load')
+      table.float('paied')
+      table.float('spread')
+      table.float('brokerage')
+      table.float('storage_cust')
+      table.float('freight')
+      table.float('total_cust')
+      table.boolean('owner')
+      table.integer('total').notNullable()
+      table.string('notes')
+      table.boolean('open')
+      table.timestamps()
+    })
   }
 
-  down() {
-    this.drop("contracts");
+  down () {
+    this.drop('contracts')
   }
 }
 
-module.exports = ContractSchema;
+module.exports = ContractSchema
