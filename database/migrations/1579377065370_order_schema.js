@@ -13,7 +13,7 @@ class OrderSchema extends Schema {
       table.integer('id_first_chart').references('id').inTable('vehicules').unsigned().onUpdate('CASCADE')
       table.integer('id_second_chart').references('id').inTable('vehicules').unsigned().onUpdate('CASCADE')
       table.float('volume').notNullable()
-      table.integer('contract_id').references('id').inTable('contracts').unsigned().notNullable().onUpdate('CASCADE')
+      table.integer('sell_id').references('id').inTable('sells').unsigned().notNullable().onUpdate('CASCADE')
       table.string('notes')
       table.timestamps()
     })

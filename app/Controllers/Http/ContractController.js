@@ -2,7 +2,7 @@
 const Contract = use('App/Models/Contract')
 
 class ContractController {
-  async index ({ request, response, view }) {
+  async index () {
     const contracts = await Contract
       .query()
       .with('storages')
@@ -13,7 +13,7 @@ class ContractController {
     return contracts
   }
 
-  async store ({ request, response }) {
+  async store ({ request }) {
     const data = request.only([
       'storage_id',
       'contract_number',
@@ -42,7 +42,7 @@ class ContractController {
     return contract
   }
 
-  async show ({ params, request, response, view }) {
+  async show ({ params }) {
     const contract = await Contract.findOrFail(params.id)
 
     await contract
@@ -51,7 +51,7 @@ class ContractController {
     return contract
   }
 
-  async update ({ params, request, response }) {
+  async update ({ params, request }) {
     const contract = await Contract.findOrFail(params.id)
 
     const data = request.only([
@@ -76,7 +76,7 @@ class ContractController {
     return contract
   }
 
-  async destroy ({ params, request, response }) {
+  async destroy ({ params }) {
     const contract = await Contract.findOrFail(params.id)
 
     contract.delete()

@@ -15,7 +15,7 @@ class SellController {
 
   async store ({ params, request, response }) {
     const data = request.all()
-    const contract = await Contract.findOrFail(data.contract_id)
+    const contract = await Contract.findOrFail(params.contracts_id)
 
     if (contract.to_load < data.volume) {
       return response.status(401).send({
@@ -26,7 +26,7 @@ class SellController {
     }
 
     await Database.table('contracts')
-      .where('id', data.contract_id)
+      .where('id', params.contracts_id)
       .update('to_load', contract.to_load - data.volume)
 
     const sell = await Sell.create({

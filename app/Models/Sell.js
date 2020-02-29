@@ -15,6 +15,10 @@ class Sell extends Model {
   enterprises () {
     return this.belongsTo('App/Models/Enterprise')
   }
+
+  orders () {
+    return this.hasMany('App/Models/Order')
+  }
 }
 
 module.exports = Sell

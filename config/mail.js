@@ -20,7 +20,6 @@ module.exports = {
     rateLimit: 10
   },
 
-
   sparkpost: {
     driver: 'sparkpost',
     apiKey: Env.get('SPARKPOST_API_KEY'),

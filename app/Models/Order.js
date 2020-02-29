@@ -11,6 +11,10 @@ class Order extends Model {
   vehicules () {
     return this.belongsToMany('App/Models/Vehicule')
   }
+
+  sells () {
+    return this.belongsTo('App/Models/Sell')
+  }
 }
 
 module.exports = Order
