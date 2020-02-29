@@ -2,16 +2,19 @@
 const PartnersContract = use('App/Models/PartnersContract')
 
 class PartnersContractController {
-  async index ({ request, response, view }) {
-    const partners = await PartnersContract.all()
+  async index ({ params }) {
+    const partners = await PartnersContract
+      .query()
+      .where('contract_id', params.contracts_id)
+      .fetch()
 
     return partners
   }
 
-  async store ({ request, response }) {
-    const data = request.only(['contract_id', 'partner_id'])
+  async store ({ params, request }) {
+    const data = request.only(['partner_id'])
 
-    const partner = await PartnersContract.create(data)
+    const partner = await PartnersContract.create({ ...data, contract_id: params.contracts_id })
 
     return partner
   }
@@ -23,7 +26,7 @@ class PartnersContractController {
     const partner
   } */
 
-  async update ({ params, request, response }) {
+  /* async update ({ params, request, response }) {
     const data = request.only(['contract_id', 'partner_id'])
 
     const partner = await PartnersContract.findOrFail(params.id)
@@ -33,9 +36,9 @@ class PartnersContractController {
     partner.save()
 
     return partner
-  }
+  } */
 
-  async destroy ({ params, request, response }) {
+  async destroy ({ params }) {
     const partner = await PartnersContract.findOrFail(params.id)
 
     partner.delete()

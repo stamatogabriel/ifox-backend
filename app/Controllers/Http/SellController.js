@@ -4,15 +4,26 @@ const Contract = use('App/Models/Contract')
 const Database = use('Database')
 
 class SellController {
-  async index ({ request, response, view }) {
-    const sells = await Sell.all()
+  async index ({ params }) {
+    const sells = await Sell
+      .query()
+      .where('contract_id', params.contracts_id)
+      .fetch()
 
     return sells
   }
 
-  async store ({ request, response }) {
+  async store ({ params, request, response }) {
     const data = request.all()
     const contract = await Contract.findOrFail(data.contract_id)
+
+    if (contract.to_load < data.volume) {
+      return response.status(401).send({
+        error: {
+          message: 'Volume da venda maior que o disponível em contrato. Entre em contato com o administrador para saber mais'
+        }
+      })
+    }
 
     await Database.table('contracts')
       .where('id', data.contract_id)
@@ -20,6 +31,7 @@ class SellController {
 
     const sell = await Sell.create({
       ...data,
+      contract_id: params.contracts_id,
       profit: data.sell_price - contract.total_cust
     })
 
@@ -32,8 +44,8 @@ class SellController {
     return sell
   }
 
-  async update ({ params, request, response }) {
-    const data = request.only(['sell_price'])
+  async update ({ params, request }) {
+    const data = request.all()
 
     const sell = await Sell.findOrFail(params.id)
 
@@ -44,7 +56,7 @@ class SellController {
     return sell
   }
 
-  async destroy ({ params, request, response }) {
+  async destroy ({ params }) {
     const sell = await Sell.findOrFail(params.id)
 
     const contract = await Contract.findOrFail(sell.contract_id)
@@ -52,8 +64,6 @@ class SellController {
     await Database.table('contracts')
       .where('id', sell.contract_id)
       .update('to_load', parseInt(contract.to_load) + parseInt(sell.volume))
-
-    console.log(parseInt(contract.to_load) + parseInt(sell.volume))
 
     sell.delete()
   }

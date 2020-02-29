@@ -18,7 +18,8 @@ Route.group(() => {
   Route.resource('sellers', 'SellerController').apiOnly()
   Route.resource('storages', 'StorageController').apiOnly()
   Route.resource('vehicules', 'VehiculeController').apiOnly()
+
   Route.resource('contracts', 'ContractController').apiOnly()
-  Route.resource('partners', 'PartnersContractController').apiOnly()
-  Route.resource('sells', 'SellController').apiOnly()
+  Route.resource('contracts.partners', 'PartnersContractController').apiOnly()
+  Route.resource('contracts.sells', 'SellController').apiOnly()
 }).middleware('auth')
