@@ -7,7 +7,7 @@ class OrderController {
   async index ({ params }) {
     const orders = await Order
       .query()
-      .where('sell_id', params.sells.id)
+      .where('sell_id', params.sells_id)
       .fetch()
 
     return orders
