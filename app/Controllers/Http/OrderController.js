@@ -17,7 +17,7 @@ class OrderController {
     const data = request.all()
     const sell = await Sell.findOrFail(params.sells_id)
 
-    if (sell.volume < data.volume) {
+    if (Number(sell.volume) < Number(data.volume)) {
       return response.status(401).send({
         error: {
           message: 'Volume da venda maior que o disponível na venda. Entre em contato com o administrador para saber mais'
@@ -32,7 +32,7 @@ class OrderController {
 
     await Database.table('sells')
       .where('id', params.sells_id)
-      .update('volume', sell.volume - data.volume)
+      .update('volume', Number(sell.volume) - Number(data.volume))
 
     return order
   }
