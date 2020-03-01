@@ -29,7 +29,7 @@ class OrderController {
       .where('id', params.sells_id)
       .update('volume', sell.volume - data.volume)
 
-    const order = await Sell.create({
+    const order = await Order.create({
       ...data,
       sell_id: params.sells_id
     })
