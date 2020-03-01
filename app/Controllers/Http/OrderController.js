@@ -15,7 +15,7 @@ class OrderController {
 
   async store ({ params, request, response }) {
     const data = request.all()
-    const sell = await Sell.findOrFail(data.sell_id)
+    const sell = await Sell.findOrFail(params.sells_id)
 
     if (sell.volume < data.volume) {
       return response.status(401).send({
