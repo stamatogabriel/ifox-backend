@@ -11,8 +11,6 @@ class SellsSchema extends Schema {
         .integer('contract_id')
         .references('id')
         .inTable('contracts')
-        .notNullable()
-        .unsigned()
         .onUpdate('CASCADE')
       table
         .integer('seller_id')

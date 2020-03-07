@@ -14,6 +14,7 @@ class OrderSchema extends Schema {
       table.integer('id_second_chart').references('id').inTable('vehicules').unsigned().onUpdate('CASCADE')
       table.float('volume').notNullable()
       table.integer('sell_id').references('id').inTable('sells').unsigned().notNullable().onUpdate('CASCADE')
+      table.float('freight')
       table.string('notes')
       table.timestamps()
     })
