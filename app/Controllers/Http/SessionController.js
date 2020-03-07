@@ -5,7 +5,7 @@ class SessionController {
   async store ({ request, response, auth }) {
     const { email, password } = request.all()
 
-    const user = await User.findOrFail(email)
+    const user = await User.findBy(email)
 
     const token = await auth.attempt(email, password)
 
