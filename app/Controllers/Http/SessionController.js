@@ -8,8 +8,6 @@ class SessionController {
     const user = await Database.table('users')
       .where('email', email)[0]
 
-    user.password = undefined
-
     const token = await auth.attempt(email, password)
 
     return { token, user }
