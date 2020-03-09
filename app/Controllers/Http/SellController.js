@@ -32,13 +32,13 @@ class SellController {
     const sell = await Sell.create({
       ...data,
       contract_id: params.contracts_id,
-      profit: data.sell_price - contract.total_cust
+      profit: data.sell_price - contract.total_cust - data.comission
     })
 
     return sell
   }
 
-  async show ({ params, request, response, view }) {
+  async show ({ params }) {
     const sell = await Sell.findOrFail(params.id)
 
     return sell

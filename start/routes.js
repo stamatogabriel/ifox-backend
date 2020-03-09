@@ -18,6 +18,7 @@ Route.group(() => {
   Route.resource('sellers', 'SellerController').apiOnly()
   Route.resource('storages', 'StorageController').apiOnly()
   Route.resource('vehicules', 'VehiculeController').apiOnly()
+  Route.resource('orders', 'OrderListController').apiOnly()
 
   Route.resource('contracts', 'ContractController').apiOnly()
   Route.resource('contracts.partners', 'PartnersContractController').apiOnly()
