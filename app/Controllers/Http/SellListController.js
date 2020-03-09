@@ -14,7 +14,6 @@ class SellListController {
     const sell = await Sell.create(data)
 
     return sell
-
   }
 
   async show ({ params }) {
