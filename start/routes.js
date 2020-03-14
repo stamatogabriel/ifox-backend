@@ -25,5 +25,5 @@ Route.group(() => {
   Route.resource('contracts.sells', 'SellController').apiOnly()
   Route.resource('contracts.sells.orders', 'OrderController').apiOnly()
 
-  Route.get('sells', 'SellListController.index')
+  Route.resource('sells', 'SellListController').apiOnly()
 }).middleware('auth')
