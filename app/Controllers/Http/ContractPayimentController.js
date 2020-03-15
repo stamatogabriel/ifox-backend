@@ -17,15 +17,15 @@ class ContractPayimentController {
     const data = request.only(['value'])
     const contract = await Contract.findOrFail(params.contracts_id)
 
-    if (contract.to_pay > data) {
+    if (contract.to_pay > data.value) {
       return response.status(401).send({ error: { message: 'O valor para pagamento é maior que o que falta pagar do contrato' } })
     }
 
     await Database.table('contracts')
       .where('id', params.contracts_id)
-      .update('to_pay', parseFloat(contract.to_pay) - parseFloat(data))
-      .update('to_load', parseFloat(contract.to_load) + parseFloat(data / contract.unitary_price))
-      .update('paied', parseFloat(contract.paied) + parseFloat(data))
+      .update('to_pay', parseFloat(contract.to_pay) - parseFloat(data.value))
+      .update('to_load', parseFloat(contract.to_load) + parseFloat(data.value / contract.unitary_price))
+      .update('paied', parseFloat(contract.paied) + parseFloat(data.value))
 
     const payiment = await ContractPayiment.create({ ...data, contract_id: params.contracts_id })
 
