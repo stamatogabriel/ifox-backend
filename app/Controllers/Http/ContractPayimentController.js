@@ -17,7 +17,7 @@ class ContractPayimentController {
     const data = request.only(['value'])
     const contract = await Contract.findOrFail(params.contracts_id)
 
-    if (parseFloat(contract.to_pay) > parseFloat(data.value)) {
+    if (parseFloat(contract.to_pay) < parseFloat(data.value)) {
       return response.status(401).send({ error: { message: 'O valor para pagamento é maior que o que falta pagar do contrato' } })
     }
 
