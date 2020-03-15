@@ -16,7 +16,7 @@ class ContractPayimentSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
-        .float('value')
+        .double('value')
         .unsigned()
         .notNullable()
       table.timestamps()

@@ -16,7 +16,7 @@ class ContractDevolutionSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
-        .float('volume')
+        .double('volume')
         .unsigned()
         .notNullable()
       table.timestamps()
