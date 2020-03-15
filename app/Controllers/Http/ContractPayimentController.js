@@ -23,9 +23,9 @@ class ContractPayimentController {
 
     await Database.table('contracts')
       .where('id', params.contracts_id)
-      .update('to_pay', Number(contract.to_pay) - Number(data))
-      .update('to_load', Number(contract.to_load) + Number(data / contract.unitary_price))
-      .update('paied', Number(contract.paied) + Number(data))
+      .update('to_pay', parseFloat(contract.to_pay) - parseFloat(data))
+      .update('to_load', parseFloat(contract.to_load) + parseFloat(data / contract.unitary_price))
+      .update('paied', parseFloat(contract.paied) + parseFloat(data))
 
     const payiment = await ContractPayiment.create({ ...data, contract_id: params.contracts_id })
 
