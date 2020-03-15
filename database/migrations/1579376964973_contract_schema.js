@@ -14,7 +14,7 @@ class ContractSchema extends Schema {
         .notNullable()
         .unsigned()
         .onUpdate('CASCADE')
-      table.string('contract_number').notNullable()
+      table.string('contract_number')
       table
         .integer('enterprise_id')
         .references('id')

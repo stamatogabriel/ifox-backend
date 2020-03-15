@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Enterprise extends Model {
-  contract () {
+  contracts () {
     return this.hasMany('App/Models/Contract')
   }
 
@@ -13,7 +13,7 @@ class Enterprise extends Model {
   }
 
   sells () {
-    return this.hasMany('App/Models/Sells')
+    return this.hasMany('App/Models/ContractPayiment')
   }
 }
 

@@ -32,7 +32,7 @@ class ContractController {
     const contract = await Contract.create({
       ...data,
       to_pay: parseFloat(data.volume) * parseFloat(data.unitary_price),
-      to_load: data.volume,
+      to_load: 0,
       paied: 0,
       total_cust: parseFloat(data.unitary_price) + parseFloat(data.spread) + parseFloat(data.brokerage) + parseFloat(data.storage_cust),
       total: parseFloat(data.volume) * parseFloat(data.unitary_price),
