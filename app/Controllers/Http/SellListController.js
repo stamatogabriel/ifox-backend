@@ -1,5 +1,6 @@
 'use strict'
 const Sell = use('App/Models/Sell')
+const Contract = use('App/Models/Contract')
 
 class SellListController {
   async index () {
@@ -22,15 +23,24 @@ class SellListController {
     return sell
   }
 
-  async update ({ request, params }) {
+  async update ({ request, params, response }) {
     const data = request.only(['contract_id'])
     const sell = await Sell.findOrFail(params.id)
+    const contract = await Contract.findOrFail(data.contract_id)
 
-    sell.merge(data)
+    if (sell.volume > contract.to_load) {
+      return response.status(401).send({
+        error: {
+          message: 'O volume da venda é maior que o disponível em contrato.'
+        }
+      })
+    } else {
+      sell.merge(data)
 
-    sell.save()
+      sell.save()
 
-    return sell
+      return sell
+    }
   }
 
   async destroy ({ params }) {
