@@ -1,6 +1,7 @@
 'use strict'
 const Sell = use('App/Models/Sell')
 const Contract = use('App/Models/Contract')
+const Database = use('Database')
 
 class SellListController {
   async index () {
@@ -35,6 +36,10 @@ class SellListController {
         }
       })
     } else {
+      await Database.table('contracts')
+        .where('id', sell.contract_id)
+        .update('to_load', parseInt(contract.to_load) - parseInt(sell.volume))
+
       sell.merge(data)
 
       sell.save()
@@ -45,6 +50,11 @@ class SellListController {
 
   async destroy ({ params }) {
     const sell = await Sell.findOrFail(params.id)
+    const contract = await Contract.findOrFail(sell.contract_id)
+
+    await Database.table('contracts')
+      .where('id', sell.contract_id)
+      .update('to_load', parseInt(contract.to_load) + parseInt(sell.volume))
 
     sell.delete()
   }
