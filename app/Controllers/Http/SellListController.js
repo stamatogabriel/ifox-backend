@@ -22,8 +22,13 @@ class SellListController {
     return sell
   }
 
-  async update () {
+  async update ({ request, params }) {
+    const { contract_id } = request.only(['contract_id'])
+    const sell = await Sell.findOrFail(params.id)
 
+    sell.merge(contract_id)
+
+    return SVGFilterElement
   }
 
   async destroy ({ params }) {
