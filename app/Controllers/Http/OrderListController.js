@@ -10,6 +10,12 @@ class OrderListController {
     return orders
   }
 
+  async show ({ params }) {
+    const order = await Order.findOrFail(params.id)
+
+    return order
+  }
+
   async destroy ({ params }) {
     const order = await Order.findOrFail(params.id)
     const sell = await Sell.findOrFail(order.sell_id)
