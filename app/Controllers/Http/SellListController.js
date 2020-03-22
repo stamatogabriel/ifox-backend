@@ -23,10 +23,10 @@ class SellListController {
   }
 
   async update ({ request, params }) {
-    const { contract_id } = request.only(['contract_id'])
+    const data = request.only(['contract_id'])
     const sell = await Sell.findOrFail(params.id)
 
-    sell.merge(contract_id)
+    sell.merge(data)
 
     sell.save()
 
