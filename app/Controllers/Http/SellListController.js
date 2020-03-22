@@ -28,6 +28,8 @@ class SellListController {
 
     sell.merge(contract_id)
 
+    sell.save()
+
     return sell
   }
 
