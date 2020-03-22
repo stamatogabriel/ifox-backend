@@ -28,7 +28,7 @@ class SellListController {
 
     sell.merge(contract_id)
 
-    return SVGFilterElement
+    return sell
   }
 
   async destroy ({ params }) {
