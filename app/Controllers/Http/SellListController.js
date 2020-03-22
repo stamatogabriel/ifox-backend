@@ -29,7 +29,7 @@ class SellListController {
     const contract = await Contract.findOrFail(data.contract_id)
 
     if (sell.volume > contract.to_load) {
-      return response.status(401).send({
+      return response.send({
         error: {
           message: 'O volume da venda é maior que o disponível em contrato.'
         }
