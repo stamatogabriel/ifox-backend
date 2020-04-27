@@ -9,7 +9,6 @@ class EnterpriseSchema extends Schema {
       table.integer('enterprise_group_id')
         .references('id')
         .inTable('enterprise_groups')
-        .notNullable()
         .unsigned()
         .onUpdate('CASCADE')
     })
