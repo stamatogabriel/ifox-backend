@@ -27,6 +27,7 @@ class SellsSchema extends Schema {
         .unsigned()
         .onUpdate('CASCADE')
       table.double('sell_price')
+      table.string('type_freigth')
       table.double('volume')
       table.double('profit')
       table.double('comission')
