@@ -23,21 +23,7 @@ class EnterpriseController {
   }
 
   async update ({ params, request }) {
-    const data = request.only([
-      'corporate_name',
-      'cnpj',
-      'ie',
-      'street',
-      'number',
-      'neighborhood',
-      'city',
-      'uf',
-      'complement',
-      'zipcode',
-      'contact',
-      'phone',
-      'cellphone',
-      'type'])
+    const data = request.all()
 
     const enterprise = await Enterprise.findOrFail(params.id)
 

@@ -7,7 +7,7 @@ class EnterpriseGroupSchema extends Schema {
   up () {
     this.create('enterprise_groups', (table) => {
       table.increments()
-      table.string('name')
+      table.string('name').notNullable().unique()
       table.timestamps()
     })
   }

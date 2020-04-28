@@ -17,7 +17,7 @@ class SellController {
     const data = request.all()
     const contract = await Contract.findOrFail(params.contracts_id)
 
-    if (contract.to_load < data.volume) {
+    if (contract.volume < data.volume) {
       return response.status(401).send({
         error: {
           message: 'Volume da venda maior que o disponível em contrato. Entre em contato com o administrador para saber mais'
@@ -32,7 +32,7 @@ class SellController {
     const sell = await Sell.create({
       ...data,
       contract_id: params.contracts_id,
-      profit: data.sell_price - contract.total_cust - data.comission
+      profit: parseFloat(parseFloat(data.sell_price) - parseFloat(contract.total_cust) - parseFloat(data.comission) - parseFloat(data.freigth)).toFixed(4)
     })
 
     return sell
