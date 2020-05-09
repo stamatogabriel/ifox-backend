@@ -10,6 +10,14 @@ class OrderListController {
     return orders
   }
 
+  async store ({ request }) {
+    const data = request.all()
+
+    const order = await Order.create(data)
+
+    return order
+  }
+
   async show ({ params }) {
     const order = await Order.findOrFail(params.id)
 

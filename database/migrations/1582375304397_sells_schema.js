@@ -23,7 +23,6 @@ class SellsSchema extends Schema {
         .integer('client_id')
         .references('id')
         .inTable('enterprises')
-        .notNullable()
         .unsigned()
         .onUpdate('CASCADE')
       table.double('sell_price')

@@ -27,7 +27,7 @@ module.exports = {
   },
 
   locales: {
-     loader: 'file',
+    loader: 'file',
     locale: 'en'
   },
 
