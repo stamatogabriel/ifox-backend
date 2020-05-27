@@ -22,7 +22,7 @@ class VehiculeController {
   }
 
   async update ({ params, request, response }) {
-    const data = request.only(['license', 'truck_type', 'max_volume'])
+    const data = request.only(['license', 'truck_type', 'max_volume', 'notes'])
     const vehicule = await Vehicule.findOrFail(params.id)
 
     vehicule.merge(data)
