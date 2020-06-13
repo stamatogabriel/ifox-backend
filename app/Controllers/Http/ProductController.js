@@ -28,6 +28,8 @@ class ProductController {
 
     product.merge(data)
 
+    await product.save()
+
     return product
   }
 
